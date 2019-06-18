@@ -340,41 +340,43 @@ class CinetPay
             throw new \Exception("Erreur: Nom du formulaire non definie");
         }
 
-        $form = "<form id='" . $formName . "' name='" . $formName . "' action='" . $this->_cashDeskUri . "' class='cpButton' method='post'>";
-        $form .= "<input type='hidden' name='apikey' value='" . $this->_cfg_apikey . "'>";
-        $form .= "<input type='hidden' name='cpm_site_id' value='" . $this->_cfg_cpm_site_id . "'>";
-        $form .= "<input type='hidden' name='cpm_currency' value='" . $this->_cfg_cpm_currency . "'>";
-        $form .= "<input type='hidden' name='cpm_page_action' value='" . $this->_cfg_cpm_page_action . "'>";
-        $form .= "<input type='hidden' name='cpm_payment_config' value='" . $this->_cfg_cpm_payment_config . "'>";
-        $form .= "<input type='hidden' name='cpm_version' value='" . $this->_cfg_cpm_version . "'>";
-        $form .= "<input type='hidden' name='cpm_language' value='" . $this->_cfg_cpm_language . "'>";
-        $form .= "<input type='hidden' name='cpm_trans_date' value='" . $this->_cfg_cpm_trans_date . "'>";
-        $form .= "<input type='hidden' name='cpm_trans_id' value='" . $this->_cfg_cpm_trans_id . "'>";
-        $form .= "<input type='hidden' name='cpm_designation' value='" . $this->_cfg_cpm_designation . "'>";
-        $form .= "<input type='hidden' name='cpm_amount' value='" . $this->_cfg_cpm_amount . "'>";
-        $form .= "<input type='hidden' name='signature' value='" . $this->_signature . "'>";
+        $form = '<form id="' . $formName . '" name="' . $formName . '" action="' . $this->_cashDeskUri . '" class="cpButton" method="post">';
+        $form .= '<input type="hidden" name="apikey" value="' . $this->_cfg_apikey . '">';
+        $form .= '<input type="hidden" name="cpm_site_id" value="' . $this->_cfg_cpm_site_id . '">';
+        $form .= '<input type="hidden" name="cpm_currency" value="' . $this->_cfg_cpm_currency . '">';
+        $form .= '<input type="hidden" name="cpm_page_action" value="' . $this->_cfg_cpm_page_action . '">';
+        $form .= '<input type="hidden" name="cpm_payment_config" value="' . $this->_cfg_cpm_payment_config . '">';
+        $form .= '<input type="hidden" name="cpm_version" value="' . $this->_cfg_cpm_version . '">';
+        $form .= '<input type="hidden" name="cpm_language" value="' . $this->_cfg_cpm_language . '">';
+        $form .= '<input type="hidden" name="cpm_trans_date" value="' . $this->_cfg_cpm_trans_date . '">';
+        $form .= '<input type="hidden" name="cpm_trans_id" value="' . $this->_cfg_cpm_trans_id . '">';
+        $form .= '<input type="hidden" name="cpm_designation" value="' . $this->_cfg_cpm_designation . '">';
+        $form .= '<input type="hidden" name="cpm_amount" value="' . $this->_cfg_cpm_amount . '">';
+
+        $form .= '<input type="hidden" name="signature" value="' . $this->_signature . '">';
         if (!empty($this->_cfg_cel_phone_num) && !empty($this->_cfg_phone_prefixe)) {
-            $form .= "<input type='hidden' name='cel_phone_num' value='" . $this->_cfg_cel_phone_num . "'>";
-            $form .= "<input type='hidden' name='cpm_phone_prefixe' value='" . $this->_cfg_phone_prefixe . "'>";
+            $form .= '<input type="hidden" name="cel_phone_num" value="' . $this->_cfg_cel_phone_num . '">';
+            $form .= '<input type="hidden" name="cel_phone_prefixe" value="' . $this->_cfg_phone_prefixe . '">';
         }
         if (!empty($this->_cfg_cpm_custom)) {
-            $form .= "<input type='hidden' name='cpm_custom' value='" . $this->_cfg_cpm_custom . "'>";
+            $form .= '<input type="hidden" name="cpm_custom" value="' . $this->_cfg_cpm_custom . '">';
         }
         if (!empty($this->_cfg_notify_url)) {
-            $form .= "<input type='hidden' name='notify_url' value='" . $this->_cfg_notify_url . "'>";
+            $form .= '<input type="hidden" name="notify_url" value="' . $this->_cfg_notify_url . '">';
         }
         if (!empty($this->_cfg_return_url)) {
-            $form .= "<input type='hidden' name='return_url' value='" . $this->_cfg_return_url . "'>";
+            $form .= '<input type="hidden" name="return_url" value="' . $this->_cfg_return_url . '">';
         }
         if (!empty($this->_cfg_cancel_url)) {
-            $form .= "<input type='hidden' name='cancel_url' value='" . $this->_cfg_cancel_url . "'>";
+            $form .= '<input type="hidden" name="cancel_url" value="' . $this->_cfg_cancel_url . '">';
         }
         if ($this->_debug == true) {
-            $form .= "<input type='hidden' name='debug' value='1'>";
+            $form .= '<input type="hidden" name="debug" value="1">';
         }
 
         $form .= $this->getOnlyPayButtonToSubmit($formName, $btnType, $size);
-        $form .= "</form>";
+        $form .= '</form>';
+
         return $form;
     }
 
@@ -571,34 +573,36 @@ class CinetPay
             throw new \Exception("Erreur: Signature de la transaction non trouvee");
         }
 
-        $form = "<form id='form_paiement_cinetpay' name='form_paiement_cinetpay' action='" . $this->_cashDeskUri . "' method='post'>";
-        $form .= "<input type='hidden' name='apikey' value='" . $this->_cfg_apikey . "'>";
-        $form .= "<input type='hidden' name='cpm_site_id' value='" . $this->_cfg_cpm_site_id . "'>";
-        $form .= "<input type='hidden' name='cpm_currency' value='" . $this->_cfg_cpm_currency . "'>";
-        $form .= "<input type='hidden' name='cpm_page_action' value='" . $this->_cfg_cpm_page_action . "'>";
-        $form .= "<input type='hidden' name='cpm_payment_config' value='" . $this->_cfg_cpm_payment_config . "'>";
-        $form .= "<input type='hidden' name='cpm_version' value='" . $this->_cfg_cpm_version . "'>";
-        $form .= "<input type='hidden' name='cpm_language' value='" . $this->_cfg_cpm_language . "'>";
-        $form .= "<input type='hidden' name='cpm_trans_date' value='" . $this->_cfg_cpm_trans_date . "'>";
-        $form .= "<input type='hidden' name='cpm_trans_id' value='" . $this->_cfg_cpm_trans_id . "'>";
-        $form .= "<input type='hidden' name='cpm_designation' value='" . $this->_cfg_cpm_designation . "'>";
-        $form .= "<input type='hidden' name='cpm_amount' value='" . $this->_cfg_cpm_amount . "'>";
-        $form .= "<input type='hidden' name='signature' value='" . $this->_signature . "'>";
+        $form = '<form id="form_paiement_cinetpay" name="form_paiement_cinetpay" action="' . $this->_cashDeskUri . '" method="post">';
+        $form .= '<input type="hidden" name="apikey" value="' . $this->_cfg_apikey . '">';
+        $form .= '<input type="hidden" name="cpm_site_id" value="' . $this->_cfg_cpm_site_id . '">';
+        $form .= '<input type="hidden" name="cpm_currency" value="' . $this->_cfg_cpm_currency . '">';
+        $form .= '<input type="hidden" name="cpm_page_action" value="' . $this->_cfg_cpm_page_action . '">';
+        $form .= '<input type="hidden" name="cpm_payment_config" value="' . $this->_cfg_cpm_payment_config . '">';
+        $form .= '<input type="hidden" name="cpm_version" value="' . $this->_cfg_cpm_version . '">';
+        $form .= '<input type="hidden" name="cpm_language" value="' . $this->_cfg_cpm_language . '">';
+        $form .= '<input type="hidden" name="cpm_trans_date" value="' . $this->_cfg_cpm_trans_date . '">';
+        $form .= '<input type="hidden" name="cpm_trans_id" value="' . $this->_cfg_cpm_trans_id . '">';
+        $form .= '<input type="hidden" name="cpm_designation" value="' . $this->_cfg_cpm_designation . '">';
+        $form .= '<input type="hidden" name="cpm_amount" value="' . $this->_cfg_cpm_amount . '">';
+
+        $form .= '<input type="hidden" name="signature" value="' . $this->_signature . '">';
+
         if (!empty($this->_cfg_cel_phone_num) && !empty($this->_cfg_phone_prefixe)) {
-            $form .= "<input type='hidden' name='cel_phone_num' value='" . $this->_cfg_cel_phone_num . "'>";
-            $form .= "<input type='hidden' name='cpm_phone_prefixe' value='" . $this->_cfg_phone_prefixe . "'>";
+            $form .= '<input type="hidden" name="cel_phone_num" value="' . $this->_cfg_cel_phone_num . '">';
+            $form .= '<input type="hidden" name="cpm_phone_prefixe" value="' . $this->_cfg_phone_prefixe . '">';
         }
         if (!empty($this->_cfg_cpm_custom)) {
-            $form .= "<input type='hidden' name='cpm_custom' value='" . $this->_cfg_cpm_custom . "'>";
+            $form .= '<input type="hidden" name="cpm_custom" value="' . $this->_cfg_cpm_custom . '">';
         }
         if (!empty($this->_cfg_notify_url)) {
-            $form .= "<input type='hidden' name='notify_url' value='" . $this->_cfg_notify_url . "'>";
+            $form .= '<input type="hidden" name="notify_url" value="' . $this->_cfg_notify_url . '">';
         }
         if (!empty($this->_cfg_return_url)) {
-            $form .= "<input type='hidden' name='return_url' value='" . $this->_cfg_return_url . "'>";
+            $form .= '<input type="hidden" name="return_url" value="' . $this->_cfg_return_url . '">';
         }
         if (!empty($this->_cfg_cancel_url)) {
-            $form .= "<input type='hidden' name='cancel_url' value='" . $this->_cfg_cancel_url . "'>";
+            $form .= '<input type="hidden" name="cancel_url" value="' . $this->_cfg_cancel_url . '">';
         }
         $form .= '<script type="text/javascript">document.forms["form_paiement_cinetpay"].submit();</script>';//We submit data here
 
